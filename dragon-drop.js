@@ -45,11 +45,10 @@ angular.module('btford.dragon-drop', []).
       offsetY;
 
     var drag = function (ev) {
-      var x = ev.clientX - offsetX,
-        y = ev.clientY - offsetY;
-
-      floaty.css('left', x + 'px');
-      floaty.css('top', y + 'px');
+      floaty.css({
+          left:  ev.pageX,
+          top:   ev.pageY
+      });
     };
 
     var remove = function (collection, index) {
@@ -226,23 +225,18 @@ angular.module('btford.dragon-drop', []).
               $compile(floaty)(floatyScope);
               documentBody.append(floaty);
               $document.bind('mousemove', drag);
+              $document.bind('mousedown', function (ev) {
+                floaty.css({
+                  left:  ev.pageX,
+                  top:   ev.pageY
+                });
+              });
+
               disableSelect();
             });
           };
 
-          elt.bind('mousemove', function (ev) {
-                floaty.css({
-                    left:  ev.pageX,
-                    top:   ev.pageY
-                });
-            });
-
           elt.bind('mousedown', function (ev) {
-            floaty.css({
-                  left:  ev.pageX,
-                  top:   ev.pageY
-            });
-
             if (dragValue) {
               return;
             }
