@@ -217,11 +217,7 @@ angular.module('btford.dragon-drop', []).
           var spawnFloaty = function () {
             scope.$apply(function () {
               floaty = template.clone();
-              floaty.css('position', 'fixed');
-
-              floaty.css('margin', '0px');
-              floaty.css('z-index', '99999');
-
+              floaty.addClass("btf-floaty");
               var floatyScope = scope.$new();
               floatyScope[valueIdentifier] = dragValue;
               if (keyIdentifier) {
@@ -234,7 +230,19 @@ angular.module('btford.dragon-drop', []).
             });
           };
 
+          elt.bind('mousemove', function (ev) {
+                floaty.css({
+                    left:  ev.pageX,
+                    top:   ev.pageY
+                });
+            });
+
           elt.bind('mousedown', function (ev) {
+            floaty.css({
+                  left:  ev.pageX,
+                  top:   ev.pageY
+            });
+
             if (dragValue) {
               return;
             }
