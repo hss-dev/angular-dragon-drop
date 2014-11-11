@@ -1,0 +1,16 @@
+#select-query ul li, .btf-floaty{
+    padding:10px;
+    margin:0 0 5px 0;
+    background-color:#23beb8;
+    color:#fff;
+    font-size:0.8em;
+    font-family:"gotham_light", helvetica, arial;
+    cursor:all-scroll;
+}
+
+
+.btf-floaty{
+    position:absolute;
+    z-index:1000;
+    float:none;
+} 	  
